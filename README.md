@@ -9,9 +9,7 @@ Ad-blocking implemented by restricting network requests to third-party URLs.
 * **History Navigation:** Intercepts the back key event to navigate the web history before closing the application.
 
 ## Implementation
-Build this in [Sketchware Pro](https://github.com/Sketchware-Pro/Sketchware-Pro/releases)
-
-Or in other Java Builders
+Change the URL as you need, build this in [Sketchware Pro](https://github.com/Sketchware-Pro/Sketchware-Pro/releases) or in other Java Builders
 
 ### `onCreate`
 
