@@ -1,7 +1,3 @@
-# Android WebView Application
-
-A lightweight, feature-rich WebView implementation for Android, designed to wrap web applications into a native-like experience. By default, this project is configured to load `https://cin.wiki`.
-
 ## Features
 
 * **Pull-to-Refresh:** Custom touch listener that reloads the page when swiping down from the top of the screen.
