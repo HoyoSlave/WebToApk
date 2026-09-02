@@ -24,4 +24,4 @@ android.webkit.WebView webview1=(android.webkit.WebView)getWindow().getDecorView
 ```
 
 ## Support Us
-You can support us by joining our [Telegram Channel](https://t.me/S_O_S_P)
+By joining our [Telegram Channel](https://t.me/S_O_S_P)
