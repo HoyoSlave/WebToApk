@@ -1,4 +1,4 @@
-'//////////////////////////// Sketchware Pro
+```//////////////////////////// Sketchware Pro
 //////////onCreate////////// Sketchware Pro
 //////////////////////////// Sketchware Pro
 final String TARGET_URL = "https://nekopoi.care";
@@ -79,4 +79,4 @@ if (webview1 != null && webview1.canGoBack()) {
   webview1.goBack();
 } else {
   finish();
-}'
+}```
