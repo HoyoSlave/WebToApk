@@ -6,7 +6,7 @@ Ad-blocking implemented by restricting network requests to third-party URLs.
 * **Pull-to-Refresh:** Custom touch listener that reloads the page when swiping down from the top of the screen.
 * **Fullscreen Video Playback:** Automatically handles screen orientation and UI visibility for embedded web videos.
 * **Zoom Lock:** Injects a custom meta viewport tag via JavaScript to disable user scaling, maintaining a native UI feel.
-* **History Navigation:** Intercepts the hardware back button to navigate the web history before closing the application.
+* **History Navigation:** Intercepts the back key event to navigate the web history before closing the application.
 
 ## Implementation
 ( [Sketchware Pro](https://github.com/Sketchware-Pro/Sketchware-Pro/releases) / Java )
