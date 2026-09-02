@@ -10,7 +10,7 @@ A lightweight, feature-rich WebView implementation for Android, designed to wrap
 * **Link Restriction:** Restricts web navigation exclusively to the defined target URL.
 * **History Navigation:** Intercepts the hardware back button to navigate the web history before closing the application.
 
-## Implementation (Sketchware Pro / Java)
+## Implementation\n(Sketchware Pro / Java)
 
 ### 1. `onCreate` Setup
 Add the following code block to your Activity's `onCreate` method:
