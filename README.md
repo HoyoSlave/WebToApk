@@ -1,6 +1,7 @@
 # Website to Android Application
+Ad-blocking implemented by restricting network requests to third-party URLs.
+
 ## Features
-Ad-blocking is implemented by restricting network requests to third-party URLs.
 
 * **Pull-to-Refresh:** Custom touch listener that reloads the page when swiping down from the top of the screen.
 * **Fullscreen Video Playback:** Automatically handles screen orientation and UI visibility for embedded web videos.
