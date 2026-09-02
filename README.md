@@ -1,7 +1,103 @@
-This code implements a WebView-based Android application to display the website "[suspicious link removed]", featuring pull-to-refresh functionality, fullscreen video playback support, zoom disabling, external link restriction, and back-button navigation handling.
+Here is the revised, minimalist version of the README.md in English.
+# Android WebView Application
+
+A lightweight, feature-rich WebView implementation for Android, designed to wrap web applications into a native-like experience[span_0](start_span)[span_0](end_span). By default, this project is configured to load `https://cin.wiki`[span_1](start_span)[span_1](end_span).
+
+## Features
+
+* **Pull-to-Refresh:** Custom touch listener that reloads the page when swiping down from the top of the screen[span_2](start_span)[span_2](end_span).
+* **Fullscreen Video Playback:** Automatically handles screen orientation and UI visibility for embedded web videos[span_3](start_span)[span_3](end_span).
+* **Zoom Lock:** Injects a custom meta viewport tag via JavaScript to disable user scaling, maintaining a native UI feel[span_4](start_span)[span_4](end_span).
+* **Link Restriction:** Restricts web navigation exclusively to the defined target URL[span_5](start_span)[span_5](end_span).
+* **History Navigation:** Intercepts the hardware back button to navigate the web history before closing the application[span_6](start_span)[span_6](end_span).
+
+## Implementation (Sketchware Pro / Java)
+
+### 1. `onCreate` Setup
+Add the following code block to your Activity's `onCreate` method[span_7](start_span)[span_7](end_span):
 
 ```java
-//SketchwarePro: onCreate:
-final String TARGET_URL="https://cin.wiki";final android.webkit.WebView webview1=new android.webkit.WebView(this);setContentView(webview1);webview1.getSettings().setJavaScriptEnabled(true);webview1.getSettings().setDomStorageEnabled(true);android.webkit.CookieManager.getInstance().setAcceptCookie(true);webview1.setOnTouchListener(new android.view.View.OnTouchListener(){private float startY;@Override public boolean onTouch(android.view.View v,android.view.MotionEvent event){switch(event.getAction()){case android.view.MotionEvent.ACTION_DOWN:startY=event.getY();break;case android.view.MotionEvent.ACTION_UP:float endY=event.getY();if((endY-startY)>500&&webview1.getScrollY()==0){webview1.reload();}break;}return false;}});webview1.setWebViewClient(new android.webkit.WebViewClient(){@Override public boolean shouldOverrideUrlLoading(android.webkit.WebView view,String url){return!url.startsWith(TARGET_URL);}@Override public void onPageStarted(android.webkit.WebView view,String url,android.graphics.Bitmap favicon){super.onPageStarted(view,url,favicon);injectDisableZoom(view);}@Override public void onPageFinished(android.webkit.WebView view,String url){super.onPageFinished(view,url);injectDisableZoom(view);}private void injectDisableZoom(android.webkit.WebView view){view.loadUrl("javascript:(function(){var head=document.getElementsByTagName('head')[0];var meta=document.createElement('meta');meta.name='viewport';meta.content='width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no';head.appendChild(meta);})()");}});webview1.setWebChromeClient(new android.webkit.WebChromeClient(){private android.view.View v;private CustomViewCallback cb;@Override public void onShowCustomView(android.view.View view,CustomViewCallback callback){v=view;cb=callback;getWindow().getDecorView().setSystemUiVisibility(5894);setRequestedOrientation(android.content.pm.ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE);((android.view.ViewGroup)getWindow().getDecorView()).addView(v);}@Override public void onHideCustomView(){((android.view.ViewGroup)getWindow().getDecorView()).removeView(v);getWindow().getDecorView().setSystemUiVisibility(0);setRequestedOrientation(android.content.pm.ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);if(cb!=null)cb.onCustomViewHidden();}});webview1.loadUrl(TARGET_URL);
-//SketchwarePro: onBackPressed:
-android.webkit.WebView webview1=(android.webkit.WebView)getWindow().getDecorView().getRootView().findFocus();if(webview1!=null&&webview1.canGoBack()){webview1.goBack();}else{finish();}
+final String TARGET_URL = "[https://cin.wiki](https://cin.wiki)";
+final android.webkit.WebView webview1 = new android.webkit.WebView(this);
+setContentView(webview1);
+
+webview1.getSettings().setJavaScriptEnabled(true);
+webview1.getSettings().setDomStorageEnabled(true);
+android.webkit.CookieManager.getInstance().setAcceptCookie(true);
+
+webview1.setOnTouchListener(new android.view.View.OnTouchListener() {
+    private float startY;
+    @Override 
+    public boolean onTouch(android.view.View v, android.view.MotionEvent event) {
+        switch(event.getAction()) {
+            case android.view.MotionEvent.ACTION_DOWN:
+                startY = event.getY();
+                break;
+            case android.view.MotionEvent.ACTION_UP:
+                float endY = event.getY();
+                if ((endY - startY) > 500 && webview1.getScrollY() == 0) {
+                    webview1.reload();
+                }
+                break;
+        }
+        return false;
+    }
+});
+
+webview1.setWebViewClient(new android.webkit.WebViewClient() {
+    @Override 
+    public boolean shouldOverrideUrlLoading(android.webkit.WebView view, String url) {
+        return !url.startsWith(TARGET_URL);
+    }
+    
+    @Override 
+    public void onPageStarted(android.webkit.WebView view, String url, android.graphics.Bitmap favicon) {
+        super.onPageStarted(view, url, favicon);
+        injectDisableZoom(view);
+    }
+    
+    @Override 
+    public void onPageFinished(android.webkit.WebView view, String url) {
+        super.onPageFinished(view, url);
+        injectDisableZoom(view);
+    }
+    
+    private void injectDisableZoom(android.webkit.WebView view) {
+        view.loadUrl("javascript:(function(){var head=document.getElementsByTagName('head')[0];var meta=document.createElement('meta');meta.name='viewport';meta.content='width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no';head.appendChild(meta);})()");
+    }
+});
+
+webview1.setWebChromeClient(new android.webkit.WebChromeClient() {
+    private android.view.View v;
+    private CustomViewCallback cb;
+    
+    @Override 
+    public void onShowCustomView(android.view.View view, CustomViewCallback callback) {
+        v = view;
+        cb = callback;
+        getWindow().getDecorView().setSystemUiVisibility(5894);
+        setRequestedOrientation(android.content.pm.ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE);
+        ((android.view.ViewGroup)getWindow().getDecorView()).addView(v);
+    }
+    
+    @Override 
+    public void onHideCustomView() {
+        ((android.view.ViewGroup)getWindow().getDecorView()).removeView(v);
+        getWindow().getDecorView().setSystemUiVisibility(0);
+        setRequestedOrientation(android.content.pm.ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
+        if (cb != null) cb.onCustomViewHidden();
+    }
+});
+
+webview1.loadUrl(TARGET_URL);
+
+2. onBackPressed Setup
+Add the following code to your onBackPressed event block to handle back navigation properly:
+android.webkit.WebView webview1 = (android.webkit.WebView) getWindow().getDecorView().getRootView().findFocus();
+if (webview1 != null && webview1.canGoBack()) {
+    webview1.goBack();
+} else {
+    finish();
+}
+
+
