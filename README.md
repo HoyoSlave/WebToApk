@@ -1,23 +1,22 @@
-Here is the revised, minimalist version of the README.md in English.
 # Android WebView Application
 
-A lightweight, feature-rich WebView implementation for Android, designed to wrap web applications into a native-like experience[span_0](start_span)[span_0](end_span). By default, this project is configured to load `https://cin.wiki`[span_1](start_span)[span_1](end_span).
+A lightweight, feature-rich WebView implementation for Android, designed to wrap web applications into a native-like experience. By default, this project is configured to load `https://cin.wiki`.
 
 ## Features
 
-* **Pull-to-Refresh:** Custom touch listener that reloads the page when swiping down from the top of the screen[span_2](start_span)[span_2](end_span).
-* **Fullscreen Video Playback:** Automatically handles screen orientation and UI visibility for embedded web videos[span_3](start_span)[span_3](end_span).
-* **Zoom Lock:** Injects a custom meta viewport tag via JavaScript to disable user scaling, maintaining a native UI feel[span_4](start_span)[span_4](end_span).
-* **Link Restriction:** Restricts web navigation exclusively to the defined target URL[span_5](start_span)[span_5](end_span).
-* **History Navigation:** Intercepts the hardware back button to navigate the web history before closing the application[span_6](start_span)[span_6](end_span).
+* **Pull-to-Refresh:** Custom touch listener that reloads the page when swiping down from the top of the screen.
+* **Fullscreen Video Playback:** Automatically handles screen orientation and UI visibility for embedded web videos.
+* **Zoom Lock:** Injects a custom meta viewport tag via JavaScript to disable user scaling, maintaining a native UI feel.
+* **Link Restriction:** Restricts web navigation exclusively to the defined target URL.
+* **History Navigation:** Intercepts the hardware back button to navigate the web history before closing the application.
 
 ## Implementation (Sketchware Pro / Java)
 
 ### 1. `onCreate` Setup
-Add the following code block to your Activity's `onCreate` method[span_7](start_span)[span_7](end_span):
+Add the following code block to your Activity's `onCreate` method:
 
 ```java
-final String TARGET_URL = "[https://cin.wiki](https://cin.wiki)";
+final String TARGET_URL = "https://cin.wiki";
 final android.webkit.WebView webview1 = new android.webkit.WebView(this);
 setContentView(webview1);
 
@@ -90,14 +89,16 @@ webview1.setWebChromeClient(new android.webkit.WebChromeClient() {
 });
 
 webview1.loadUrl(TARGET_URL);
+```
 
-2. onBackPressed Setup
-Add the following code to your onBackPressed event block to handle back navigation properly:
+### 2. `onBackPressed` Setup
+Add the following code to your `onBackPressed` event block to handle back navigation properly:
+
+```java
 android.webkit.WebView webview1 = (android.webkit.WebView) getWindow().getDecorView().getRootView().findFocus();
 if (webview1 != null && webview1.canGoBack()) {
     webview1.goBack();
 } else {
     finish();
 }
-
-
+```
