@@ -1,5 +1,5 @@
 # Website to Android Application
-Ad-blocking implemented by restricting network requests to third-party URLs.
+Ad-blocker implemented by restricting network requests to third-party URLs.
 
 ## Features
 
