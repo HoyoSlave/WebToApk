@@ -22,3 +22,6 @@ final String URL="https://s13.nontonanimeid.boats";final android.webkit.WebView 
 ```java
 android.webkit.WebView webview1=(android.webkit.WebView)getWindow().getDecorView().getRootView().findFocus();if(webview1!=null&&webview1.canGoBack()){webview1.goBack();}else{finish();}
 ```
+
+## Support Us
+You can support us by joining our [Telegram Channel](https://t.me/S_O_S_P)
