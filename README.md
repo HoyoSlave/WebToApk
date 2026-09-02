@@ -10,6 +10,7 @@ Ad-blocking implemented by restricting network requests to third-party URLs.
 
 ## Implementation
 Build this on [Sketchware Pro](https://github.com/Sketchware-Pro/Sketchware-Pro/releases)
+
 Or other Java Builder
 
 ### 1. `onCreate` Setup
