@@ -1,0 +1,19 @@
+# WebToApk (Sketchware Pro)
+
+zero-library web-to-apk for sketchware pro using one-liner asd blocks.
+
+## Features
+
+anti-redirect, back-to-previous-page, fullscreen support, pull-to-refresh, zoom support
+
+### `onCreate`
+
+```java
+final String U="https://example.com",H=android.net.Uri.parse(U).getHost();final android.view.ViewGroup d=(android.view.ViewGroup)getWindow().getDecorView();final android.webkit.WebView w=new android.webkit.WebView(this);w.setId(8888);setContentView(w);android.webkit.WebSettings s=w.getSettings();s.setJavaScriptEnabled(true);s.setDomStorageEnabled(true);s.setSupportZoom(true);s.setBuiltInZoomControls(true);s.setDisplayZoomControls(false);w.setWebViewClient(new android.webkit.WebViewClient(){public boolean shouldOverrideUrlLoading(android.webkit.WebView v,String u){String h=android.net.Uri.parse(u).getHost();return h==null||!(h.equals(H)||h.endsWith("."+H));}});w.setWebChromeClient(new android.webkit.WebChromeClient(){public void onShowCustomView(android.view.View v,CustomViewCallback c){v.setId(9999);v.setTag(c);v.setBackgroundColor(0xFF000000);d.addView(v,new android.view.ViewGroup.LayoutParams(-1,-1));d.setSystemUiVisibility(5894);w.evaluateJavascript("(function(){var e=document.fullscreenElement||document.webkitFullscreenElement,v=e&&e.tagName=='VIDEO'?e:(e&&e.querySelector('video'))||document.querySelector('video');return(v?v.videoHeight>=v.videoWidth:e&&e.clientHeight>=e.clientWidth)?1:6})()",new android.webkit.ValueCallback<String>(){public void onReceiveValue(String r){setRequestedOrientation("1".equals(r)?1:6);}});}public void onHideCustomView(){android.view.View f=d.findViewById(9999);if(f!=null){d.removeView(f);((CustomViewCallback)f.getTag()).onCustomViewHidden();d.setSystemUiVisibility(0);setRequestedOrientation(1);}}});final float[]y={-1f};w.setOnTouchListener(new android.view.View.OnTouchListener(){public boolean onTouch(android.view.View v,android.view.MotionEvent e){if(e.getPointerCount()>1)y[0]=-1f;else if(e.getAction()==0&&v.getScrollY()==0)y[0]=e.getY();else if(e.getAction()==1){if(y[0]>=0&&v.getScrollY()==0&&e.getY()-y[0]>200f)w.reload();y[0]=-1f;}return false;}});w.loadUrl(U);
+```
+
+### `onBackPressed`
+
+```java
+android.view.ViewGroup d=(android.view.ViewGroup)getWindow().getDecorView();android.view.View f=d.findViewById(9999);android.webkit.WebView w=(android.webkit.WebView)findViewById(8888);if(f!=null){d.removeView(f);((android.webkit.WebChromeClient.CustomViewCallback)f.getTag()).onCustomViewHidden();d.setSystemUiVisibility(0);setRequestedOrientation(1);}else if(w!=null&&w.canGoBack())w.goBack();else finish();
+```
