@@ -10,3 +10,4 @@ final String U="https://example.com",H=android.net.Uri.parse(U).getHost();final 
 ```java
 android.view.ViewGroup d=(android.view.ViewGroup)getWindow().getDecorView();android.view.View f=d.findViewById(9999);android.webkit.WebView w=(android.webkit.WebView)findViewById(8888);if(f!=null){d.removeView(f);((android.webkit.WebChromeClient.CustomViewCallback)f.getTag()).onCustomViewHidden();d.setSystemUiVisibility(0);setRequestedOrientation(1);}else if(w!=null&&w.canGoBack())w.goBack();else finish();
 ```
+### Need to block ads on a URL and convert it to an APK, but can't build the application? DM [@HoyoSlave](https://t.me/HoyoSlave) (1K IDR/URL).
